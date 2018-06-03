@@ -6,7 +6,7 @@ This small AWS Lambda will help you validate any reCaptcha created by your forms
 
 If you know how to invoce a Lamda Function from another function then then only thing that you need to do, is to pass the right JSON like this:
 
-```
+``` JavaScript
 {
 	recaptcha: THE_RECAPTCHA_FROM_THE_FORM,
 	secret: RE_CAPTCHA_SECRET
@@ -15,7 +15,7 @@ If you know how to invoce a Lamda Function from another function then then only 
 
 Bellow you can find a full example how to invoke the function that you can copy and paste.
 
-```
+``` JavaScript
 //
 //	1.	Create the object with the related data for the function
 //
