@@ -3,7 +3,7 @@ let request = require('request');
 //
 //  This AWS Lambda is responsabile for validating a Google reCaptch chalange.
 //
-//  The return will contain a string that is either true or false.
+//  The return value will contain a string that is either true or false.
 //
 exports.handler = async (event) => {
 
@@ -21,11 +21,11 @@ exports.handler = async (event) => {
 	//
 	//	->	Start the chain
 	//
-	try 
+	try
 	{
 		container = await check_the_recaptcha(container);
 	}
-	catch(error) 
+	catch(error)
 	{
         //
         //  1.  Create a message to send back
@@ -33,7 +33,7 @@ exports.handler = async (event) => {
         let message = {
             message: error.message || error
         };
-        
+
 		//
 		//  2.  Create the response
 		//
@@ -41,18 +41,18 @@ exports.handler = async (event) => {
 			statusCode: error.status || 500,
 			body: JSON.stringify(message, null, 4)
 		};
-		
+
 		//
 		//  ->  Tell lambda that we finished
 		//
 		return response;
 	}
-	
+
 	//
 	//	->	Return a positive response
 	//
 	return container.response;
-    
+
 };
 
 //  _____    _____     ____    __  __   _____    _____   ______    _____
@@ -97,15 +97,13 @@ function check_the_recaptcha(container)
 			    //  1.  Log the error so we can find out what went wrong
 			    //
 			    console.log(req_error);
-			    
+
 			    //
 			    //  2.  Set the response to a negative value
 			    //
 				container.response = false;
 			}
 
-			console.log(google);
-			
 			//
 			//	2.	Check what Google think of the user.
 			//
